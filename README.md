@@ -75,16 +75,16 @@ In the future, **AbleMinds AI** can be implemented into a **Raspberry Pi** to ma
 ## **Screenshots**
 
 ### **1. Main Interface - PDF Upload**
-![Main Interface](https://path-to-image.com/main-interface.png)
+![Main Interface](photos/fend.jpg)
 
-### **2. Text and Voice Input**
-![Text and Voice Input](https://path-to-image.com/text-voice-input.png)
+### **2. Text Input**
+![Text Input](photos/text.jpg)
 
-### **3. Answer Display**
-![Answer Display](https://path-to-image.com/answer-display.png)
+### **3. Voice Input**
+![Voice](photos/speak.jpg)
 
-### **4. Future Raspberry Pi Implementation**
-![Raspberry Pi Integration](https://path-to-image.com/raspberry-pi-integration.png)
+### **4. Sign Language Input**
+![Sign Lang](photos/sign.jpg)
 
 ## **Roadmap**
 - [x] Text and voice input/output support
