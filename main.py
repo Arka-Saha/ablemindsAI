@@ -21,6 +21,8 @@ class CustomDepthwiseConv2D(DepthwiseConv2D):
 
 os.environ["PINECONE_API_KEY"] = "<PINECONE API>"
 
+
+# USING Sign langugae model
 try:
     model = load_model(
         "keras2222/keras_Model.h5",
@@ -43,17 +45,22 @@ except Exception as e:
     st.error("Error loading labels: {}".format(e))
     exit()
 
+# reading the PDF document
 loader = PyPDFLoader("ncert_test_file.pdf")
 st.html(r"hackhome.html")
 data = loader.load()
+
+# Breaking pdf data in chunks to feed the LLM
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=600, chunk_overlap=0)
 docs = text_splitter.split_documents(data)
 
+# Using vector DB to store the varioud chunks output
 embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 index_name = "orkho"
 docsearch = Pinecone.from_texts([t.page_content for t in docs], embeddings, index_name=index_name)
 
 recognizer = sr.Recognizer()
+
 
 def speech_to_text():
     with sr.Microphone() as source:
@@ -102,6 +109,8 @@ def webcam_hand_sign_prediction():
 
     return class_name, confidence_score
 
+
+# getting sign language input using camera
 def mm():
     t=""
     while True:
@@ -127,7 +136,8 @@ def mm():
         }
 
         message_parts = []
-        
+
+        # Using LLAMA 3.1 LLM
         async for part in await AsyncClient().chat(
             model="llama3.1", messages=[message], stream=True,
         ):
@@ -143,7 +153,7 @@ def mm():
     # return t
 
 
-# Speech input
+# Getting speeh input from user
 if st.button("Start Speaking"):
     user_inp = speech_to_text()
 elif st.button("Capture Hand Sign"):
